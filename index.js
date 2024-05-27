@@ -13,7 +13,7 @@ const cors = require('cors');
 
 app.use(
   cors({
-    origin: '*',
+    origin: 'https://pizza-rajes.netlify.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
