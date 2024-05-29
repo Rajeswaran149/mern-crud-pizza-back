@@ -6,6 +6,7 @@ const Pizza = require('./models/pizzaModel');
 const app = express();
 const db = require('./db.js');
 app.use(express.json());
+app.use(express.urlencoded({ extended : true }))
 const path = require('path');
 const cors = require('cors');
 
@@ -13,7 +14,7 @@ const cors = require('cors');
 
 app.use(
   cors({
-    origin: 'https://pizza-rajes.netlify.app',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
