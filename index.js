@@ -10,18 +10,29 @@ app.use(express.urlencoded({ extended : true }))
 const path = require('path');
 const cors = require('cors');
 
+app.use(cors({
+  origin : "*",
+  methods: ["POST", "GET"],
+    credentials: true
+}));
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*'); // '*' allows any origin, you can restrict it to specific origins
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+});
 
-app.use(
-  cors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-  })
-);
+// app.use(
+//   cors({
+//     origin: '*',
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     preflightContinue: false,
+//     optionsSuccessStatus: 204,
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+//   })
+// );
 
 app.get('/', (req, res) => {
   res.send('Web server started running');
